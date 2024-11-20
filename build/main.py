@@ -75,7 +75,7 @@ class PacketHandler(object):
     """called if packet received"""
 
     def __init__(self):
-        print("paket handler started")
+        logging.info("PacketHandler initialized")
 
     def __enter__(self):
         return self
