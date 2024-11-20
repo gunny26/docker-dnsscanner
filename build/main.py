@@ -56,6 +56,7 @@ QTYPES_MAP = {
     15: "MX",       # 15 mail exchange
     16: "TXT",      # 16 text strings
     28: "AAAA",     # 28 a host address IPv6
+    65: "HTTPS",    # 65 https address
     252: "AXFR",    # 252 A request for a transfer of an entire zone
     253: "MAILB",   # 253 A request for mailbox-related records (MB, MG or MR)
     254: "MAILA",   # 254 A request for mail agent RRs (Obsolete - see MX)
