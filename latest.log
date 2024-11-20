@@ -1,8 +1,8 @@
 docker-dnsscanner
-[latest ae93705] automatic pre latest image built commit
- 1 file changed, 1 insertion(+), 1 deletion(-)
-using 2024-11-20-48ad13b
-Sending build context to Docker daemon  128.5kB
+[latest 16e3c12] automatic pre latest image built commit
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+using 2024-11-20-ec56691
+Sending build context to Docker daemon  144.4kB
 Step 1/9 : FROM ubuntu:24.04
  ---> fec8bfd95b54
 Step 2/9 : ENV DEBIAN_FRONTEND=noninteractive
@@ -20,10 +20,8 @@ Step 5/9 : WORKDIR /usr/src/app
 Step 6/9 : RUN pip3 freeze
  ---> Using cache
  ---> 03cfd714fdfe
-Step 7/9 : COPY build/main.py /usr/src/app/main.py
- ---> 96c59c68585c
-Step 8/9 : RUN apt -y purge python3-pip python3-setuptools;     apt -y autoremove;     apt -y clean;
- ---> Running in a7c5619f61e2
+Step 7/9 : RUN apt -y purge python3-pip python3-setuptools;     apt -y autoremove;     apt -y clean;
+ ---> Running in ff78a90f5013
 [91m
 WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
 
@@ -56,11 +54,13 @@ Removing python3-wheel (0.42.0-2) ...
 [91m
 WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
 
-[0mRemoving intermediate container a7c5619f61e2
- ---> 720a0d17285e
+[0mRemoving intermediate container ff78a90f5013
+ ---> 2ef8dd372c88
+Step 8/9 : COPY build/main.py /usr/src/app/main.py
+ ---> 7bc82733452b
 Step 9/9 : CMD ["python3", "-u", "/usr/src/app/main.py"]
- ---> Running in b9b0acdd9a2a
-Removing intermediate container b9b0acdd9a2a
- ---> 58719aa4cdd1
-Successfully built 58719aa4cdd1
-Successfully tagged registry.messner.click/gunny26/docker-dnsscanner:2024-11-20-48ad13b
+ ---> Running in 94ee4bcdd55f
+Removing intermediate container 94ee4bcdd55f
+ ---> d305e62696f0
+Successfully built d305e62696f0
+Successfully tagged registry.messner.click/gunny26/docker-dnsscanner:2024-11-20-ec56691
