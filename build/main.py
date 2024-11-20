@@ -113,7 +113,7 @@ class PacketHandler(object):
         if (pkt.src in BLACKLIST) or (pkt.dst in BLACKLIST):  # skip if blacklisted
             return
 
-        if scapy.DNS in pkt:
+        if scapy.DNS in pkt and pkt[DNS].qr == 0:  # das qr bit 0 bedeutet anfrage
             # Extrahiere relevante Informationen aus dem DNS-Paket
             print(pkt.summary())
             print(pkt.show())
