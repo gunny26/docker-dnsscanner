@@ -29,6 +29,8 @@ DNS_QUERY_TOTAL = Counter(
     "Number of queries for this dns record",
     [
         "qname",
+        "qtype",
+        "qclass",
     ],
 )
 
@@ -108,7 +110,11 @@ class PacketHandler(object):
             print(f"  Name: {pkt[scapy.DNS].qd.qname.decode('utf-8')}")
             print(f"  Type: {pkt[scapy.DNS].qd.qtype}")
 
-            DNS_QUERY_TOTAL.labels(qname=pkt[scapy.DNS].qd.qname.decode('utf-8')).inc()
+            DNS_QUERY_TOTAL.labels(
+                qname=pkt[scapy.DNS].qd.qname.decode('utf-8'),
+                qtype=str(pkt[scapy.DNS].qd.qtype),
+                qclass=str(pkt[scapy.DNS].qd.qclass)
+            ).inc()
 
         # mac addresses update - thats always available
         # mac_harvester.add(str(pkt.src))
