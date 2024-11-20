@@ -113,6 +113,10 @@ class PacketHandler(object):
         if (pkt.src in BLACKLIST) or (pkt.dst in BLACKLIST):  # skip if blacklisted
             return
 
+        if DNS in pkt:
+            # Extrahiere relevante Informationen aus dem DNS-Paket
+            print(pkt.summary())
+
         # mac addresses update - thats always available
         # mac_harvester.add(str(pkt.src))
         # mac_harvester.add(str(pkt.dst))
@@ -146,6 +150,7 @@ def main():
         # sniff(iface=iface, prn=ph.handle_packet, store=False)
         if APP_INTERFACE:
             scapy.sniff(
+                filter="udp and port 53",
                 iface=APP_INTERFACE,
                 prn=ph.handle_packet,
                 store=False,
