@@ -1,8 +1,8 @@
 docker-dnsscanner
-[latest 627f8f0] automatic pre latest image built commit
+[latest dd228cf] automatic pre latest image built commit
  1 file changed, 1 insertion(+), 1 deletion(-)
-using 2024-11-20-36cbfe3
-Sending build context to Docker daemon  183.3kB
+using 2024-11-20-edec8d3
+Sending build context to Docker daemon  196.6kB
 Step 1/9 : FROM ubuntu:24.04
  ---> fec8bfd95b54
 Step 2/9 : ENV DEBIAN_FRONTEND=noninteractive
@@ -24,10 +24,10 @@ Step 7/9 : RUN apt -y purge python3-pip python3-setuptools;     apt -y autoremov
  ---> Using cache
  ---> 758bac9d226a
 Step 8/9 : COPY build/main.py /usr/src/app/main.py
- ---> 5b969bff1f72
+ ---> acb502e40ec9
 Step 9/9 : CMD ["python3", "-u", "/usr/src/app/main.py"]
- ---> Running in b92f9976f298
-Removing intermediate container b92f9976f298
- ---> f73dbd948746
-Successfully built f73dbd948746
-Successfully tagged registry.messner.click/gunny26/docker-dnsscanner:2024-11-20-36cbfe3
+ ---> Running in 09a095858ed0
+Removing intermediate container 09a095858ed0
+ ---> 6c0501a37a88
+Successfully built 6c0501a37a88
+Successfully tagged registry.messner.click/gunny26/docker-dnsscanner:2024-11-20-edec8d3
