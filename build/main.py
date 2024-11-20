@@ -24,25 +24,11 @@ for key, value in os.environ.items():
         logging.info(f"{key}: {value}")
 
 # prometheus metrics
-MAC_SEEN_TOTAL = Counter(
-    "netscanner_mac_seen_total",
+DNS_QUERY_TOTAL = Counter(
+    "dnscanner query for name",
     "Number of intervals this MAC address was seen",
     [
-        "address",
-    ],
-)
-IPV4_SEEN_TOTAL = Counter(
-    "netscanner_ipv4_seen_total",
-    "Number of intervals this ipv4 address was seen",
-    [
-        "address",
-    ],
-)
-IPV6_SEEN_TOTAL = Counter(
-    "netscanner_ipv6_seen_total",
-    "Number of intervals this ipv6 address was seen",
-    [
-        "address",
+        "qname",
     ],
 )
 
@@ -117,9 +103,12 @@ class PacketHandler(object):
             # Extrahiere relevante Informationen aus dem DNS-Paket
             print(pkt.summary())
             print(pkt.show())
+
             print(f"Query from {pkt[scapy.IP].src} to {pkt[scapy.IP].dst}:")
             print(f"  Name: {pkt[scapy.DNS].qd.qname.decode('utf-8')}")
             print(f"  Type: {pkt[scapy.DNS].qd.qtype}")
+
+            DNS_QUERY_TOTAL.labels(qname=pkt[scapy.DNS].qd.qname.decode('utf-8')).inc()
 
         # mac addresses update - thats always available
         # mac_harvester.add(str(pkt.src))
