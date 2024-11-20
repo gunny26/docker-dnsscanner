@@ -1,9 +1,14 @@
-docker-netscanner
-[master ba43f1e] automatic pre latest image built commit
- 4 files changed, 278 insertions(+), 73 deletions(-)
- delete mode 100644 stable.tmp
-using 2024-11-19-0a8d599
-Sending build context to Docker daemon  324.1kB
+docker-dnsscanner
+Auf Branch latest
+Unversionierte Dateien:
+  (benutzen Sie "git add <Datei>...", um die Änderungen zum Commit vorzumerken)
+	.flake8
+	latest.tmp
+
+nichts zum Commit vorgemerkt, aber es gibt unversionierte Dateien
+(benutzen Sie "git add" zum Versionieren)
+using 2024-11-20-34bf56c
+Sending build context to Docker daemon  100.4kB
 Step 1/9 : FROM ubuntu:24.04
 24.04: Pulling from library/ubuntu
 Digest: sha256:278628f08d4979fb9af9ead44277dbc9c92c2465922310916ad0c46ec9999295
@@ -25,9 +30,9 @@ Step 6/9 : RUN pip3 freeze
  ---> Using cache
  ---> 03cfd714fdfe
 Step 7/9 : COPY build/main.py /usr/src/app/main.py
- ---> 28ac87d3ccf3
+ ---> 9ebef0d3be53
 Step 8/9 : RUN apt -y purge python3-pip python3-setuptools;     apt -y autoremove;     apt -y clean;
- ---> Running in 080ac91bbced
+ ---> Running in 9c955e3dddb3
 [91m
 WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
 
@@ -60,11 +65,11 @@ Removing python3-wheel (0.42.0-2) ...
 [91m
 WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
 
-[0mRemoving intermediate container 080ac91bbced
- ---> 1dc76895ee5a
+[0mRemoving intermediate container 9c955e3dddb3
+ ---> 543e2c4742bc
 Step 9/9 : CMD ["python3", "-u", "/usr/src/app/main.py"]
- ---> Running in bd12154a42fd
-Removing intermediate container bd12154a42fd
- ---> e1c5a873b888
-Successfully built e1c5a873b888
-Successfully tagged registry.messner.click/gunny26/docker-netscanner:2024-11-19-0a8d599
+ ---> Running in 23bfece9fdcd
+Removing intermediate container 23bfece9fdcd
+ ---> c923c191794c
+Successfully built c923c191794c
+Successfully tagged registry.messner.click/gunny26/docker-dnsscanner:2024-11-20-34bf56c
