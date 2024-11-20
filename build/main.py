@@ -96,6 +96,7 @@ class PacketHandler(object):
             qname = pkt[scapy.DNS].qd.qname.decode('utf-8')
             qtype = QTYPES_MAP.get(pkt[scapy.DNS].qd.qtype, "unknown"),
             qclass = QCLASS_MAP.get(pkt[scapy.DNS].qd.qclass, "unknown")
+
             if qtype == "unknown" or qclass == "unknown":
                 logging.debug(pkt.summary())
                 logging.debug(pkt.show())
