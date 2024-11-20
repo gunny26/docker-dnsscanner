@@ -164,8 +164,8 @@ if __name__ == "__main__":
     start_http_server(APP_PORT)  # start prometheus exporter on selected port
 
     # collecting mac, ipv4 and ipv6 addresses
-    mac_harvester = Harvester(prom_counter=MAC_SEEN_TOTAL, label="mac addresses")
-    ipv4_harvester = Harvester(prom_counter=IPV4_SEEN_TOTAL, label="ipv4 addresses")
-    ipv6_harvester = Harvester(prom_counter=IPV6_SEEN_TOTAL, label="ipv6 addresses")
+    # mac_harvester = Harvester(prom_counter=MAC_SEEN_TOTAL, label="mac addresses")
+    # ipv4_harvester = Harvester(prom_counter=IPV4_SEEN_TOTAL, label="ipv4 addresses")
+    # ipv6_harvester = Harvester(prom_counter=IPV6_SEEN_TOTAL, label="ipv6 addresses")
 
     main()  # blocking           asyncio.run(main())
