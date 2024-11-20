@@ -55,6 +55,7 @@ QTYPES_MAP = {
     14: "MINFO",    # 14 mailbox or mail list information
     15: "MX",       # 15 mail exchange
     16: "TXT",      # 16 text strings
+    28: "AAAA",     # 28 a host address IPv6
     252: "AXFR",    # 252 A request for a transfer of an entire zone
     253: "MAILB",   # 253 A request for mailbox-related records (MB, MG or MR)
     254: "MAILA",   # 254 A request for mail agent RRs (Obsolete - see MX)
@@ -104,6 +105,9 @@ class PacketHandler(object):
             print(f"Query from {pkt[scapy.IP].src} to {pkt[scapy.IP].dst}:")
             print(f"  Name: {pkt[scapy.DNS].qd.qname.decode('utf-8')}")
             print(f"  Type: {pkt[scapy.DNS].qd.qtype}")
+            print(f"  Type: {QTYPES_MAP.get(pkt[scapy.DNS].qd.qtype, 'unknown')}")
+            print(f"  Type: {pkt[scapy.DNS].qd.qclass}")
+            print(f"  Type: {QCLASS_MAP.get(pkt[scapy.DNS].qd.qclass, 'unknown')}")
 
             DNS_QUERY_TOTAL.labels(
                 qname=pkt[scapy.DNS].qd.qname.decode('utf-8'),
