@@ -39,41 +39,6 @@ BLACKLIST = [
 ]  # list of blacklisted macs
 
 
-class Harvester:
-    """used by packet handler and collecting information"""
-
-    def __init__(self, prom_counter, label):
-        """
-        tableid one of mac, ip, ipv6
-        label human readable tablename just for display
-        """
-        self.prom_counter = prom_counter
-        self.label = label  # just for display
-        self.data = {}  # local dict storage
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, *exc_info):
-        pass
-
-    def add(self, key, values=None):
-        """
-        method called by Packethandler
-        key could be mac, ipv4 or ipv6
-        """
-        self.prom_counter.labels(address=key).inc()
-        if key not in self.data:  # internal data, just for debug and display
-            self.data[key] = {
-                "address": key,
-                "first_seen": time.time(),
-                "last_seen": 0,
-                "seen": 0,
-            }
-        self.data[key]["seen"] += 1
-        self.data[key]["last_seen"] = time.time()
-
-
 class PacketHandler(object):
     """called if packet received"""
 
@@ -168,10 +133,5 @@ if __name__ == "__main__":
 
     logging.info(f"starting prometheus exporter on port {APP_PORT}/tcp")
     start_http_server(APP_PORT)  # start prometheus exporter on selected port
-
-    # collecting mac, ipv4 and ipv6 addresses
-    # mac_harvester = Harvester(prom_counter=MAC_SEEN_TOTAL, label="mac addresses")
-    # ipv4_harvester = Harvester(prom_counter=IPV4_SEEN_TOTAL, label="ipv4 addresses")
-    # ipv6_harvester = Harvester(prom_counter=IPV6_SEEN_TOTAL, label="ipv6 addresses")
 
     main()  # blocking           asyncio.run(main())
