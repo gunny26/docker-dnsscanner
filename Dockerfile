@@ -12,7 +12,8 @@ RUN apt update && apt install --no-install-recommends -y \
     python3-pip \
     python3 \
     python3-scapy \
-    python3-prometheus-client
+    python3-prometheus-client \
+    libpcap-dev
 
 WORKDIR /usr/src/app
 # install python modules
