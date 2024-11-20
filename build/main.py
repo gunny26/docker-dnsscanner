@@ -116,6 +116,7 @@ class PacketHandler(object):
         if scapy.DNS in pkt:
             # Extrahiere relevante Informationen aus dem DNS-Paket
             print(pkt.summary())
+            print(pkt.show())
 
         # mac addresses update - thats always available
         # mac_harvester.add(str(pkt.src))
