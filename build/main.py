@@ -90,25 +90,20 @@ class PacketHandler(object):
         # print(pkt.show())  # data structure
         # print(pkt.src)
 
-        if pkt.dst.startswith("33:33:") or pkt.dst.startswith(
-            "01:00:5e:"
-        ):  # multicast ipv6 and ipv4
-            return
-
-        if (pkt.src in BLACKLIST) or (pkt.dst in BLACKLIST):  # skip if blacklisted
-            return
-
         if scapy.DNS in pkt and pkt[scapy.DNS].qr == 0:  # das qr bit 0 bedeutet anfrage
             # Extrahiere relevante Informationen aus dem DNS-Paket
-            print(pkt.summary())
-            print(pkt.show())
 
-            print(f"Query from {pkt[scapy.IP].src} to {pkt[scapy.IP].dst}:")
-            print(f"  Name: {pkt[scapy.DNS].qd.qname.decode('utf-8')}")
-            print(f"  Type: {pkt[scapy.DNS].qd.qtype}")
-            print(f"  Type: {QTYPES_MAP.get(pkt[scapy.DNS].qd.qtype, 'unknown')}")
-            print(f"  Type: {pkt[scapy.DNS].qd.qclass}")
-            print(f"  Type: {QCLASS_MAP.get(pkt[scapy.DNS].qd.qclass, 'unknown')}")
+            qname = pkt[scapy.DNS].qd.qname.decode('utf-8')
+            qtype = QTYPES_MAP.get(pkt[scapy.DNS].qd.qtype, "unknown"),
+            qclass = QCLASS_MAP.get(pkt[scapy.DNS].qd.qclass, "unknown")
+            if qtype == "unknown" or qclass == "unknown":
+                logging.debug(pkt.summary())
+                logging.debug(pkt.show())
+
+            logging.info(f"Query from {pkt[scapy.IP].src} to {pkt[scapy.IP].dst}:")
+            logging.info(f"  Name: {qname}")
+            logging.info(f"  Type: {pkt[scapy.DNS].qd.qtype} {qtype}")
+            logging.info(f" Class: {pkt[scapy.DNS].qd.qclass} {qclass}")
 
             DNS_QUERY_TOTAL.labels(
                 qname=pkt[scapy.DNS].qd.qname.decode('utf-8'),
