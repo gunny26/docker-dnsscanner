@@ -25,8 +25,8 @@ for key, value in os.environ.items():
 
 # prometheus metrics
 DNS_QUERY_TOTAL = Counter(
-    "dnscanner query for name",
-    "Number of intervals this MAC address was seen",
+    "dnsscanner_qname_total",
+    "Number of queries for this dns record",
     [
         "qname",
     ],
