@@ -117,6 +117,9 @@ class PacketHandler(object):
             # Extrahiere relevante Informationen aus dem DNS-Paket
             print(pkt.summary())
             print(pkt.show())
+            print(f"Query from {packet[scapy.IP].src} to {packet[scapy.IP].dst}:")
+            print(f"  Name: {packet[scapy.DNS].qd.qname.decode('utf-8')}")
+            print(f"  Type: {packet[scapy.DNS].qd.qtype}")
 
         # mac addresses update - thats always available
         # mac_harvester.add(str(pkt.src))
