@@ -1,0 +1,16 @@
+version: '2.4'
+
+services:
+
+    dnsscanner:
+        image: registry.messner.click/gunny26/docker-dnsscanner:latest
+        container_name: dnsscanner
+        restart: "no"
+        mem_limit: 128m
+        cpu_count: 2
+        privileged: true
+        network_mode: host
+        environment:
+            TZ: Europe/Vienna
+            APP_LOG_LEVEL: INFO
+            APP_PORT: 9102
