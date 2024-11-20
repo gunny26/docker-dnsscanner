@@ -102,7 +102,7 @@ class PacketHandler(object):
         # method called if packet arrives
         # print(pkt.layers())  # show layers
         # print(pkt.summary())  # oneline summary
-        print(pkt.show())  # data structure
+        # print(pkt.show())  # data structure
         # print(pkt.src)
 
         if pkt.dst.startswith("33:33:") or pkt.dst.startswith(

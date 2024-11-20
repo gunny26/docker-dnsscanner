@@ -20,7 +20,6 @@ WORKDIR /usr/src/app
 # RUN pip3 install --disable-pip-version-check --no-cache-dir -r requirements.txt
 RUN pip3 freeze
 # this changes very often so put it at the end of the main section
-COPY build/main.py /usr/src/app/main.py
 
 # cleanup
 # starting at 471MB
@@ -44,5 +43,6 @@ RUN apt -y purge python3-pip python3-setuptools; \
 #       appuser
 # RUN chown -R appuser /usr/src/app
 
+COPY build/main.py /usr/src/app/main.py
 # USER appuser
 CMD ["python3", "-u", "/usr/src/app/main.py"]
