@@ -39,7 +39,7 @@ stable:
 	docker push $(IMAGE_NAME_STABLE) | tee -a stable.tmp
 	mv stable.tmp stable.log
 	git add stable.log
-	git push origin master
+	git push origin main
 
 lint:
 	ruff check build/main.py

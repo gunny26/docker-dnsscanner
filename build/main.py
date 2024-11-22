@@ -39,35 +39,35 @@ BLACKLIST = [
 
 # taken from RF1035
 QTYPES_MAP = {
-    1: "A",         # 1 a host address
-    2: "NS",        # 2 an authoritative name server
-    3: "MD",        # 3 a mail destination (Obsolete - use MX)
-    4: "MF",        # 4 a mail forwarder (Obsolete - use MX)
-    5: "CNAME",     # 5 the canonical name for an alias
-    6: "SOA",       # 6 marks the start of a zone of authority
-    7: "MB",        # 7 a mailbox domain name (EXPERIMENTAL)
-    8: "MG",        # 8 a mail group member (EXPERIMENTAL)
-    9: "MR",        # 9 a mail rename domain name (EXPERIMENTAL)
-    10: "NULL",     # 10 a null RR (EXPERIMENTAL)
-    11: "WKS",      # 11 a well known service description
-    12: "PTR",      # 12 a domain name pointer
-    13: "HINFO",    # 13 host information
-    14: "MINFO",    # 14 mailbox or mail list information
-    15: "MX",       # 15 mail exchange
-    16: "TXT",      # 16 text strings
-    28: "AAAA",     # 28 a host address IPv6
-    65: "HTTPS",    # 65 https address
-    252: "AXFR",    # 252 A request for a transfer of an entire zone
-    253: "MAILB",   # 253 A request for mailbox-related records (MB, MG or MR)
-    254: "MAILA",   # 254 A request for mail agent RRs (Obsolete - see MX)
-    255: "*",       # 255 A request for all records
+    1: "A",  # 1 a host address
+    2: "NS",  # 2 an authoritative name server
+    3: "MD",  # 3 a mail destination (Obsolete - use MX)
+    4: "MF",  # 4 a mail forwarder (Obsolete - use MX)
+    5: "CNAME",  # 5 the canonical name for an alias
+    6: "SOA",  # 6 marks the start of a zone of authority
+    7: "MB",  # 7 a mailbox domain name (EXPERIMENTAL)
+    8: "MG",  # 8 a mail group member (EXPERIMENTAL)
+    9: "MR",  # 9 a mail rename domain name (EXPERIMENTAL)
+    10: "NULL",  # 10 a null RR (EXPERIMENTAL)
+    11: "WKS",  # 11 a well known service description
+    12: "PTR",  # 12 a domain name pointer
+    13: "HINFO",  # 13 host information
+    14: "MINFO",  # 14 mailbox or mail list information
+    15: "MX",  # 15 mail exchange
+    16: "TXT",  # 16 text strings
+    28: "AAAA",  # 28 a host address IPv6
+    65: "HTTPS",  # 65 https address
+    252: "AXFR",  # 252 A request for a transfer of an entire zone
+    253: "MAILB",  # 253 A request for mailbox-related records (MB, MG or MR)
+    254: "MAILA",  # 254 A request for mail agent RRs (Obsolete - see MX)
+    255: "*",  # 255 A request for all records
 }
 QCLASS_MAP = {
-    1: "IN",        # 1 the Internet
-    2: "CS",        # 2 the CSNET class (Obsolete - used only for examples in some obsolete RFCs)
-    3: "CH",        # 3 the CHAOS class
-    4: "HS",        # 4 Hesiod [Dyer 87]
-    255: "*",       # 255 any class
+    1: "IN",  # 1 the Internet
+    2: "CS",  # 2 the CSNET class (Obsolete - used only for examples in some obsolete RFCs)
+    3: "CH",  # 3 the CHAOS class
+    4: "HS",  # 4 Hesiod [Dyer 87]
+    255: "*",  # 255 any class
 }
 
 
@@ -93,8 +93,8 @@ class PacketHandler(object):
         if scapy.DNS in pkt and pkt[scapy.DNS].qr == 0:  # das qr bit 0 bedeutet anfrage
             # Extrahiere relevante Informationen aus dem DNS-Paket
 
-            qname = pkt[scapy.DNS].qd.qname.decode('utf-8')
-            qtype = QTYPES_MAP.get(pkt[scapy.DNS].qd.qtype, "unknown"),
+            qname = pkt[scapy.DNS].qd.qname.decode("utf-8")
+            qtype = (QTYPES_MAP.get(pkt[scapy.DNS].qd.qtype, "unknown"),)
             qclass = QCLASS_MAP.get(pkt[scapy.DNS].qd.qclass, "unknown")
 
             if qtype == "unknown" or qclass == "unknown":
@@ -107,9 +107,9 @@ class PacketHandler(object):
             logging.info(f" Class: {pkt[scapy.DNS].qd.qclass} {qclass}")
 
             DNS_QUERY_TOTAL.labels(
-                qname=pkt[scapy.DNS].qd.qname.decode('utf-8'),
+                qname=pkt[scapy.DNS].qd.qname.decode("utf-8"),
                 qtype=QTYPES_MAP.get(pkt[scapy.DNS].qd.qtype, "unknown"),
-                qclass=QCLASS_MAP.get(pkt[scapy.DNS].qd.qclass, "unknown")
+                qclass=QCLASS_MAP.get(pkt[scapy.DNS].qd.qclass, "unknown"),
             ).inc()
 
 
