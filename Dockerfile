@@ -1,6 +1,3 @@
-# FROM --platform=linux/arm/v7 arm32v7/ubuntu:20.04
-# FROM --platform=linux/arm64/v8 arm64v8/ubuntu:24.04
-# FROM --platform=linux/amd64 amd64/ubuntu:24.04
 FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
