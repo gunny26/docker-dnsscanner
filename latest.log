@@ -1,13 +1,9 @@
 docker-dnsscanner
-[main 76c5393] automatic pre latest image built commit
- 2 files changed, 18 insertions(+), 20 deletions(-)
- delete mode 100644 stable.tmp
-using 2024-11-23-658fb3b
-Sending build context to Docker daemon  422.9kB
+[main 71fc7b7] automatic pre latest image built commit
+ 1 file changed, 3 deletions(-)
+using 2024-11-23-89d7416
+Sending build context to Docker daemon  432.1kB
 Step 1/9 : FROM ubuntu:24.04
-24.04: Pulling from library/ubuntu
-Digest: sha256:278628f08d4979fb9af9ead44277dbc9c92c2465922310916ad0c46ec9999295
-Status: Downloaded newer image for ubuntu:24.04
  ---> fec8bfd95b54
 Step 2/9 : ENV DEBIAN_FRONTEND=noninteractive
  ---> Using cache
@@ -34,4 +30,4 @@ Step 9/9 : CMD ["python3", "-u", "/usr/src/app/main.py"]
  ---> Using cache
  ---> 21f3df8ba917
 Successfully built 21f3df8ba917
-Successfully tagged registry.messner.click/gunny26/docker-dnsscanner:2024-11-23-658fb3b
+Successfully tagged registry.messner.click/gunny26/docker-dnsscanner:2024-11-23-89d7416
