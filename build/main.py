@@ -9,17 +9,17 @@ import scapy.all as scapy
 
 logging.basicConfig(level=logging.INFO)
 
-APP_LOG_LEVEL = os.environ.get("APP_LOG_LEVEL", "INFO")
-APP_INTERFACE = os.environ.get(
-    "APP_INTERFACE",
+EXPORTER_LOG_LEVEL = os.environ.get("EXPORTER_LOG_LEVEL", "INFO")
+EXPORTER_INTERFACE = os.environ.get(
+    "EXPORTER_INTERFACE",
     "wlp4s0",  # default for development
 )  # None to listen on all available, if set only this one
-APP_DISPLAY_INTERVAL = int(os.environ.get("APP_DISPLAY_INTERVAL", "60"))
-APP_PORT = int(os.environ.get("APP_PORT", "9100"))
+EXPORTER_DISPLAY_INTERVAL = int(os.environ.get("EXPORTER_DISPLAY_INTERVAL", "60"))
+EXPORTER_PORT = int(os.environ.get("EXPORTER_PORT", "9100"))
 
 logging.info("showing enviroment variables")
 for key, value in os.environ.items():
-    if key.startswith("APP_"):
+    if key.startswith("EXPORTER_"):
         logging.info(f"{key}: {value}")
 
 # prometheus metrics
@@ -118,17 +118,17 @@ def main():
     packet_handler = PacketHandler()
     logging.info("Starting scan, showing all available interfaces")
     logging.info(scapy.get_if_list())
-    if APP_INTERFACE not in scapy.get_if_list():
-        logging.error(f"selected interface {APP_INTERFACE} is not available")
+    if EXPORTER_INTERFACE not in scapy.get_if_list():
+        logging.error(f"selected interface {EXPORTER_INTERFACE} is not available")
         sys.exit(1)
     with packet_handler as ph:
         # sniff(iface=iface, prn=ph.handle_packet, filter="arp",
         # store=False)
         # sniff(iface=iface, prn=ph.handle_packet, store=False)
-        if APP_INTERFACE:
+        if EXPORTER_INTERFACE:
             scapy.sniff(
                 filter="udp and port 53",
-                iface=APP_INTERFACE,
+                iface=EXPORTER_INTERFACE,
                 prn=ph.handle_packet,
                 store=False,
             )
@@ -137,14 +137,14 @@ def main():
 
 
 if __name__ == "__main__":
-    if APP_LOG_LEVEL == "DEBUG":
+    if EXPORTER_LOG_LEVEL == "DEBUG":
         logging.getLogger().setLevel(logging.DEBUG)
-    elif APP_LOG_LEVEL == "INFO":
+    elif EXPORTER_LOG_LEVEL == "INFO":
         logging.getLogger().setLevel(logging.INFO)
-    elif APP_LOG_LEVEL == "ERROR":
+    elif EXPORTER_LOG_LEVEL == "ERROR":
         logging.getLogger().setLevel(logging.ERROR)
 
-    logging.info(f"starting prometheus exporter on port {APP_PORT}/tcp")
-    start_http_server(APP_PORT)  # start prometheus exporter on selected port
+    logging.info(f"starting prometheus exporter on port {EXPORTER_PORT}/tcp")
+    start_http_server(EXPORTER_PORT)  # start prometheus exporter on selected port
 
     main()  # blocking           asyncio.run(main())
