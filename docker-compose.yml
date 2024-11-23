@@ -12,5 +12,5 @@ services:
         network_mode: host
         environment:
             TZ: Europe/Vienna
-            APP_LOG_LEVEL: INFO
-            APP_PORT: 9102
+            EXPORTER_LOG_LEVEL: INFO
+            EXPORTER_PORT: 9102
