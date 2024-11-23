@@ -1,10 +1,9 @@
 docker-dnsscanner
-[main 9b97f19] automatic pre deployment commit
- 2 files changed, 9 insertions(+)
- create mode 100644 README.md
+[main 658fb3b] automatic pre deployment commit
+ 2 files changed, 3 insertions(+), 2 deletions(-)
  create mode 100644 stable.tmp
-using 2024-11-22-d5b11a5
-Sending build context to Docker daemon  425.5kB
+using 2024-11-23-82a4e80
+Sending build context to Docker daemon  417.8kB
 Step 1/9 : FROM ubuntu:24.04
 24.04: Pulling from library/ubuntu
 Digest: sha256:278628f08d4979fb9af9ead44277dbc9c92c2465922310916ad0c46ec9999295
@@ -29,35 +28,35 @@ Step 7/9 : RUN apt -y purge python3-pip python3-setuptools;     apt -y autoremov
  ---> Using cache
  ---> 6c484244dda1
 Step 8/9 : COPY build/main.py /usr/src/app/main.py
- ---> f25e5bd7874d
+ ---> 9103d76affb2
 Step 9/9 : CMD ["python3", "-u", "/usr/src/app/main.py"]
  ---> [Warning] The requested image's platform (linux/arm64/v8) does not match the detected host platform (linux/amd64/v2) and no specific platform was requested
- ---> Running in 286ae2488f5e
-Removing intermediate container 286ae2488f5e
- ---> ae778bbc92ee
-Successfully built ae778bbc92ee
-Successfully tagged registry.messner.click/gunny26/docker-dnsscanner:2024-11-22-d5b11a5
+ ---> Running in 1423515b7bba
+Removing intermediate container 1423515b7bba
+ ---> d7c7b23296e9
+Successfully built d7c7b23296e9
+Successfully tagged registry.messner.click/gunny26/docker-dnsscanner:2024-11-23-82a4e80
 The push refers to repository [registry.messner.click/gunny26/docker-dnsscanner]
-8bd9d871da65: Preparing
-df7b7d265196: Preparing
-29cc6c9925ba: Preparing
-c36f005a8eed: Preparing
-2d6b6e63aa2f: Preparing
-c36f005a8eed: Layer already exists
-df7b7d265196: Layer already exists
-29cc6c9925ba: Layer already exists
-2d6b6e63aa2f: Layer already exists
-8bd9d871da65: Pushed
-2024-11-22-d5b11a5: digest: sha256:e1c85ef01b9f4af31b993ab3194ef536a377cfe01953e5011d3999c525b5e319 size: 1366
-The push refers to repository [registry.messner.click/gunny26/docker-dnsscanner]
-8bd9d871da65: Preparing
+597359ab548d: Preparing
 df7b7d265196: Preparing
 29cc6c9925ba: Preparing
 c36f005a8eed: Preparing
 2d6b6e63aa2f: Preparing
 2d6b6e63aa2f: Layer already exists
-8bd9d871da65: Layer already exists
+c36f005a8eed: Layer already exists
+df7b7d265196: Layer already exists
 29cc6c9925ba: Layer already exists
+597359ab548d: Pushed
+2024-11-23-82a4e80: digest: sha256:410a0af804f6ca3988364b21490fbcc90a592df06f24360ce42b13ea429c730e size: 1366
+The push refers to repository [registry.messner.click/gunny26/docker-dnsscanner]
+597359ab548d: Preparing
+df7b7d265196: Preparing
+29cc6c9925ba: Preparing
+c36f005a8eed: Preparing
+2d6b6e63aa2f: Preparing
+2d6b6e63aa2f: Layer already exists
 df7b7d265196: Layer already exists
 c36f005a8eed: Layer already exists
-stable: digest: sha256:e1c85ef01b9f4af31b993ab3194ef536a377cfe01953e5011d3999c525b5e319 size: 1366
+29cc6c9925ba: Layer already exists
+597359ab548d: Layer already exists
+stable: digest: sha256:410a0af804f6ca3988364b21490fbcc90a592df06f24360ce42b13ea429c730e size: 1366
