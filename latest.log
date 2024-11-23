@@ -1,9 +1,10 @@
 docker-dnsscanner
-[main 0d0771f] automatic pre latest image built commit
- 4 files changed, 410 insertions(+), 82 deletions(-)
+[main 2458091] automatic pre latest image built commit
+ 3 files changed, 78 insertions(+), 441 deletions(-)
+ rewrite stable.log (94%)
  delete mode 100644 stable.tmp
-using 2024-11-22-e816c7b
-Sending build context to Docker daemon  416.3kB
+using 2024-11-23-9b97f19
+Sending build context to Docker daemon  408.6kB
 Step 1/9 : FROM ubuntu:24.04
 24.04: Pulling from library/ubuntu
 Digest: sha256:278628f08d4979fb9af9ead44277dbc9c92c2465922310916ad0c46ec9999295
@@ -28,10 +29,10 @@ Step 7/9 : RUN apt -y purge python3-pip python3-setuptools;     apt -y autoremov
  ---> Using cache
  ---> 758bac9d226a
 Step 8/9 : COPY build/main.py /usr/src/app/main.py
- ---> 3d8e84e19925
+ ---> bb08b0ecea42
 Step 9/9 : CMD ["python3", "-u", "/usr/src/app/main.py"]
- ---> Running in 1c89f87f1bdc
-Removing intermediate container 1c89f87f1bdc
- ---> 1eac0e414453
-Successfully built 1eac0e414453
-Successfully tagged registry.messner.click/gunny26/docker-dnsscanner:2024-11-22-e816c7b
+ ---> Running in 2851109ea328
+Removing intermediate container 2851109ea328
+ ---> 21f3df8ba917
+Successfully built 21f3df8ba917
+Successfully tagged registry.messner.click/gunny26/docker-dnsscanner:2024-11-23-9b97f19
